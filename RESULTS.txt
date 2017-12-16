@@ -1,0 +1,39 @@
+
+1. Compare the runtime of the serial and parallel versions considering the datasets provided having
+different sizes. Calculate the speedup using 2, 4, and 8 threads.
+
+All tests were conducted with k=3
+Times are median times in ms for five trials on maple.
+
+Implementation	| small	| medium
+basic			|	49	| 55822
+optimized		|	5	| 1668	base speedup = 33.5 (from single-threaded optimization)
+
+multi 1			|	6	| 1796
+multi 2			|	4	| 869 	speedup = 1.92
+multi 4			|	4	| 447  	speedup = 3.73
+multi 8			|	6	| 259 	speedup = 6.44  (6.9 compared to multi1)
+multi 48		|   17	| 93  	speedup = 17.93
+multi 1024  	|   59	| 139 	speedup = 12
+
+2. Estimate the proportion of parallel code by relating the speedup you get and the number of
+threads employed. What’s the maximum speedup you would be able to obtain using an infinite
+number of threads and cores?
+
+p_est = (1/speedup - 1) / (1/n - 1) = ((1/6.44) - 1) / ((1/8)-1) = .96539
+asymtotic_speedup = 1/(1-P_estimated) = 28.89
+
+
+3. Let’s run using 1024 threads. What’s the speedup now?
+
+medium_dataset_runtime = 139
+speedup = 12
+
+
+
+name,N-[1],[4],[24],[48]
+small,336-1241, 981, __, 1164
+medium,4898-53000, 17900, 18600, 17600  2:30200
+twonorm,7400- 236400,71200,72997,73600
+magic,19020- , , 250900, 246600
+
