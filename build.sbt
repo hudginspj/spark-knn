@@ -1,4 +1,4 @@
-name := "HelloWorld"
+name := "SparkKnn"
  
 version := "1.0"
  

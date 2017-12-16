@@ -1,4 +1,4 @@
-// import required spark classes
+
 import org.apache.spark.SparkContext
 import org.apache.spark.SparkContext._
 import org.apache.spark.SparkConf
@@ -6,8 +6,7 @@ import org.apache.spark.SparkConf
 //import org.apache.spark.mllib
 
 
-// define main method (Spark entry point)
-object HelloWorld {
+object SparkKnn {
 
   class ArffInstance extends Serializable {
     var cls: String = ""
@@ -37,8 +36,7 @@ object HelloWorld {
       }
     }
 
-    //initialise spark context
-    val conf = new SparkConf().setAppName("HelloWorld")
+    val conf = new SparkConf().setAppName("SparkKnn")
     val sc = new SparkContext(conf)
     var small = sc.textFile(inputFile)
     small = small.filter(line => !line.startsWith("@"))
@@ -64,16 +62,14 @@ object HelloWorld {
 
     var runTime = System.currentTimeMillis - startTime
 
-    println("************")
-    println("************")
+    println("="*25)
     println(correctPredictions + " out of " +
       totalPredictions + " predictions correct, accuracy " +
       100.0 * correctPredictions / totalPredictions + "%, runtime "
       + runTime + "ms")
-    println("************")
-    println("************")
+    println("="*25)
 
-    sc.stop()
+    //sc.stop()
   }
 }
 
